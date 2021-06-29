@@ -1,0 +1,3 @@
+[submodule "Plugins/StreetMap"]
+	path = Plugins/StreetMap
+	url = https://github.com/GameInstitute/StreetMap.git
