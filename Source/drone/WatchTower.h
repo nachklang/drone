@@ -53,6 +53,10 @@ public:
 	 */
 	void LookUpAtRate(float Rate);
 
+	/*Camera movement is active in play mode.*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Logic")
+	bool IsPlayMode;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

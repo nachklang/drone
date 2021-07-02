@@ -3,9 +3,9 @@
 #include "WatchTower.h"
 
 #include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AWatchTower::AWatchTower()
@@ -15,7 +15,7 @@ AWatchTower::AWatchTower()
 
 	RootComponent = CreateOptionalDefaultSubobject<UCapsuleComponent>("Root Capsule");
 
-		Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
 	Mesh->SetupAttachment(GetRootComponent());
 
 	// Create springArm.
@@ -34,7 +34,7 @@ AWatchTower::AWatchTower()
 	BaseTurnRate = 65.f;
 	BaseLookUpRate = 65.f;
 
-
+	IsPlayMode = true;
 }
 
 // Called when the game starts or when spawned
@@ -63,12 +63,14 @@ void AWatchTower::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 void AWatchTower::Turn(float Value)
 {
-	AddControllerYawInput(Value);
+	if (IsPlayMode)
+		AddControllerYawInput(Value);
 }
 
 void AWatchTower::LookUp(float Value)
 {
-	AddControllerPitchInput(Value);
+	if (IsPlayMode)
+		AddControllerPitchInput(Value);
 }
 
 void AWatchTower::TurnAtRate(float Rate)
